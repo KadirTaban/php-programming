@@ -4,12 +4,16 @@
     <div class="col-md-9 col-lg-8 col-xl-7">
         @foreach($articles as $article)
             <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">{{$article->title}}</h2>
-                    <h3 class="post-subtitle">{{str_limit($article->content),75}}</h3>
+                <a href="{{route('single', [$article->getCategory->slug,$article->slug])}}"> <h2 class="post-title">{{$article->title}}</h2>
+
+                    <img src="{{$article->image}}">
+
+                    <h4 class="post-subtitle" >{!!str_limit($article->content,75) !!}</h4>
+
                 </a>
-                <p class="post-meta">
-                    <a href="#">{{$article->getCategory->category_id}}</a>
+
+                <p class="post-meta"> Kategori:
+                    <a href="#">{{$article->getCategory->name}}</a>
                 <p> <span class="float-right">{{$article->created_at->diffForHumans()}}</span></p>
                 </p>
             </div>
